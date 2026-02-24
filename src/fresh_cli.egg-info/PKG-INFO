@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: fresh-cli
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.14
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.3.1
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: python-dotenv>=1.2.1
+
+# Freshservice CLI
+
+A command-line tool for managing Freshservice tickets.
+
+## Features
+
+- List tickets with optional filters (status, priority)
+- View detailed ticket information
+- Update ticket status
+
+## Installation
+
+This project uses `uv` for dependency management. After cloning the repository:
+
+```bash
+uv sync
+```
+
+## Configuration
+
+Set your Freshservice API key as an environment variable:
+
+```bash
+export FRESHSERVICE_API_KEY="your-api-key"
+export FRESHSERVICE_DOMAIN="your-domain.freshservice.com"
+```
+
+You can also use a `.env` file:
+
+```bash
+cp .env.example .env
+# Edit .env with your credentials
+```
+
+## Usage
+
+```bash
+# List all tickets
+fresh-cli list
+
+# List tickets with filters
+fresh-cli list --status open --priority 1 --limit 10
+
+# View a specific ticket
+fresh-cli view 123
+
+# Update ticket status
+fresh-cli status 123 resolved
+```
+
+## Available Commands
+
+- `list` - List tickets with optional filters
+  - `--status` - Filter by status (open, pending, resolved, closed)
+  - `--priority` - Filter by priority (1-4)
+  - `--limit` - Maximum number of tickets to show (default: 20)
+
+- `view <ticket_id>` - View detailed ticket information
+
+- `status <ticket_id> <status>` - Update ticket status
+  - Status values: open, pending, resolved, closed
+
+## API Status Values
+
+- 2 = Open
+- 3 = Pending
+- 4 = Resolved
+- 5 = Closed
+```
+
+## Additional Tasks

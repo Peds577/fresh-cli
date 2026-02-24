@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/fresh_cli/__init__.py
+src/fresh_cli/__main__.py
+src/fresh_cli/api.py
+src/fresh_cli/config.py
+src/fresh_cli.egg-info/PKG-INFO
+src/fresh_cli.egg-info/SOURCES.txt
+src/fresh_cli.egg-info/dependency_links.txt
+src/fresh_cli.egg-info/entry_points.txt
+src/fresh_cli.egg-info/requires.txt
+src/fresh_cli.egg-info/top_level.txt
