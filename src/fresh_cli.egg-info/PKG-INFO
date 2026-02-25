@@ -79,3 +79,12 @@ fresh-cli status 123 resolved
 ```
 
 ## Additional Tasks
+## .env.example
+
+Create a .env file with your credentials:
+
+```
+FRESHSERVICE_API_KEY=your_api_key_here
+FRESHSERVICE_DOMAIN=your_domain.freshservice.com
+```
+
