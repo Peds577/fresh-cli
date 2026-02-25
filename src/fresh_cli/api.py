@@ -65,7 +65,9 @@ class FreshserviceClient:
             timeout=30.0,
         )
 
-    def list_tickets(self, filters: Optional[dict] = None, limit: int = 20) -> list[Ticket]:
+    def list_tickets(
+        self, filters: Optional[dict] = None, limit: int = 20
+    ) -> list[Ticket]:
         """
         List tickets with optional filters.
 
@@ -76,15 +78,19 @@ class FreshserviceClient:
         Returns:
             List of Ticket objects
         """
-        params = {"limit": limit}
-        if filters:
-            params.update(filters)
-
-        response = self.client.get(f"{self.base_url}/tickets", params=params)
+        response = self.client.get(f"{self.base_url}/tickets")
         response.raise_for_status()
 
         data = response.json()
-        return [Ticket.from_dict(ticket) for ticket in data.get("tickets", [])]
+        tickets = [Ticket.from_dict(ticket) for ticket in data.get("tickets", [])]
+
+        if filters:
+            if "status" in filters:
+                tickets = [t for t in tickets if t.status == filters["status"]]
+            if "priority" in filters:
+                tickets = [t for t in tickets if t.priority == filters["priority"]]
+
+        return tickets[:limit]
 
     def get_ticket(self, ticket_id: int) -> Ticket:
         """
